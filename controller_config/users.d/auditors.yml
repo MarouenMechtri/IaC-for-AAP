@@ -1,0 +1,4 @@
+controller_user_accounts:
+  - username: auditor
+    is_auditor: true
+    password: password

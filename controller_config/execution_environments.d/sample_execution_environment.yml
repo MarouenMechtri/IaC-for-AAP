@@ -1,0 +1,6 @@
+# Documentation link : 
+# To use this resource copy paste the following code and modify the values :
+---
+controller_execution_environments:
+  - name: "My EE - IaC"
+    image: quay.io/ansible/awx-ee

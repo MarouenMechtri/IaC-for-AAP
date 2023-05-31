@@ -1,0 +1,34 @@
+# Documentation link : https://github.com/redhat-cop/controller_configuration/blob/devel/roles/job_templates/README.md
+# To use this resource copy paste the following code and modify the values :
+---
+controller_templates:
+- name: Install Apache - IaC
+  organization: Default - IaC
+  job_type: run
+  inventory: System Inventory - IaC
+  execution_environment: Minimal execution environment
+  survey_enabled: true
+  #survey: "{{ lookup('template', 'template_surveys/basic_survey.json') | regex_replace('\\n', '') | default(omit) }}"
+  project: System Project - IaC
+  playbook: helloworld.yml
+  credentials:
+  - System Credential - IaC
+  extra_vars:
+    var1: test
+  notification_templates_error:
+  - Email notification - IaC
+- name: Provision Machine - IaC
+  organization: Default - IaC
+  job_type: run
+  inventory: System Inventory - IaC
+  execution_environment: Minimal execution environment
+  survey_enabled: true
+  project: System Project - IaC
+  playbook: helloworld.yml
+  credentials:
+  - System Credential - IaC
+  survey: {}
+  extra_vars:
+    var1: test
+  notification_templates_error:
+  - Email notification - IaC

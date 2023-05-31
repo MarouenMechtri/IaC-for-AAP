@@ -1,0 +1,46 @@
+# Documentation link : https://github.com/redhat-cop/controller_configuration/blob/devel/roles/roles/README.md
+# To use this resource copy paste the following code and modify the values :  
+# DO NOT edit the "role" entry or your merge request will be REFUSED 
+---
+controller_roles:
+# Add users to Defalut Org
+- user: neo
+  organizations:
+    - "Default - IaC"
+  role: "member"
+
+# Add user to team System
+- user: neo
+  target_team: "System Team - IaC"
+  role: member
+
+# Add execute roles on my objects to my team
+#- team: "System Team"
+#  job_templates:
+#  - Install Apache
+#  - Provision Machine
+#  role: execute
+
+# - team: "My Team"
+#   workflows:
+#   - workflow1
+#   - workflows2
+#   role: execute
+# 
+# - team: "My Team"
+#   inventories:
+#   - inventory1
+#   - inventory2
+#   role: read
+# 
+# - team: "My Team"
+#   projects:
+#   - project1
+#   - project2
+#   role: read
+# 
+# - team: "My Team"
+#   credentials:
+#   - cred1
+#   - cred2
+#   role: read

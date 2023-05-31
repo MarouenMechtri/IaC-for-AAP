@@ -1,0 +1,12 @@
+# Documentation link : https://github.com/redhat-cop/controller_configuration/blob/devel/roles/schedules/README.md
+# RRule documentation here : https://dateutil.readthedocs.io/en/stable/rrule.html
+# To use this resource copy paste the following code and modify the values :  
+---
+controller_schedules:
+  - name: Network Schedule - IaC
+    description: Network Schedule for Demo - IaC
+    unified_job_template: Cisco Switches Upgrade - IaC
+    rrule: "DTSTART:20230420T235500Z RRULE:FREQ=DAILY;INTERVAL=1;COUNT=1"
+    #extra_data:
+    #  scheduled: true
+    #verbosity: 1

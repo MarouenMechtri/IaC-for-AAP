@@ -1,0 +1,7 @@
+# Documentation link : https://github.com/redhat-cop/controller_configuration/blob/devel/roles/inventories/README.md
+# To use this resource copy paste the following code and modify the values :
+---
+controller_inventories:
+  - name: Network Inventory - IaC
+    organization: Default - IaC
+    description: Network Team Inventory - IaC

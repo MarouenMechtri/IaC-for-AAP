@@ -1,0 +1,7 @@
+# Documentation link : https://github.com/redhat-cop/controller_configuration/blob/devel/roles/organizations/README.md
+# USAGE of this resource is reserved only to AAP ADMINISTRATORS !
+---
+controller_organizations:
+- name: Default - IaC
+  description: Default Organization - IaC
+  max_hosts: 100

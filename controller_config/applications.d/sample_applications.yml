@@ -1,0 +1,10 @@
+# Documentation link : https://github.com/redhat-cop/controller_configuration/tree/devel/roles/applications/README.md
+# To use copy paste the following code and modify the values :
+---
+controller_applications:
+  - name: "controller Config Default Application - IaC"
+    description: "Generic application, which can be used for oauth tokens - IaC"
+    organization: "Default - IaC"
+    state: "present"
+    client_type: "confidential"
+    authorization_grant_type: "password"

@@ -1,0 +1,14 @@
+# Documentation link : https://github.com/redhat-cop/controller_configuration/blob/devel/roles/projects/README.md
+# To use this resource copy paste the following code and modify the values :  
+---
+controller_projects:
+- name: System Project - IaC
+  organization: Default - IaC
+  scm_branch: master
+  scm_clean: 'no'
+  scm_delete_on_update: 'no'
+  scm_type: git
+  scm_update_on_launch: 'no'
+  scm_url: https://github.com/ansible/tower-example.git
+  notification_templates_error:
+  - Email notification - IaC

@@ -1,0 +1,11 @@
+# Documentation link : https://github.com/redhat-cop/controller_configuration/blob/devel/roles/users/README.md
+# USAGE of this resource is reserved only to AAP ADMINISTRATORS !
+# The users defined here are local users. Through CasC local users will be created but never deleted.
+# These are emergency users and are meant to be used only if SAML is unavailable !!
+---
+controller_user_accounts:
+  - username: neo
+    first_name: Neo - IaC
+    is_superuser: false
+    password: password
+    organization: Default - IaC

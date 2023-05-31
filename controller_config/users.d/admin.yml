@@ -1,0 +1,4 @@
+controller_user_accounts: []
+#  - username: admin
+#    is_superuser: true
+#    password: redhat

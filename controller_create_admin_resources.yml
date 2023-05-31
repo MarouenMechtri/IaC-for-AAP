@@ -1,0 +1,71 @@
+## Playbook that configure the AAP platform
+---
+- name: Configure AAP resources using CaC approach
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars_files:
+    - settings.yml
+
+  pre_tasks:
+    - name: Setup authentication (block)
+      no_log: "{{ controller_configuration_object_diff_secure_logging }}"
+      when: controller_oauthtoken is not defined
+      tags:
+        - always
+      block:
+        - name: Get the Authentication Token for the future requests
+          ansible.builtin.uri:
+            url: "https://{{ controller_hostname }}/api/v2/tokens/"
+            user: "{{ controller_username }}"
+            password: "{{ controller_password }}"
+            method: POST
+            force_basic_auth: true
+            validate_certs: "{{ controller_validate_certs }}"
+            status_code: 201
+          register: authtoken_res
+
+        - name: Set the oauth token to be used since now
+          ansible.builtin.set_fact:
+            controller_oauthtoken: "{{ authtoken_res.json.token }}"
+            controller_oauthtoken_url: "{{ authtoken_res.json.url }}"
+
+  roles:
+    - role: redhat_cop.controller_configuration.filetree_read
+    - role: redhat_cop.controller_configuration.dispatch
+      vars:
+        controller_configuration_dispatcher_roles:
+          - {role: organizations, var: controller_organizations, tags: organizations}
+          - {role: teams, var: controller_teams, tags: teams}
+          - {role: users, var: controller_user_accounts, tags: users}
+          - {role: settings, var: controller_settings, tags: settings}
+          - {role: instances, var: controller_instances, tags: instances}
+          - {role: instance_groups, var: controller_instance_groups, tags: instance_groups}
+          - {role: execution_environments, var: controller_execution_environments, tags: execution_environments}
+          - {role: credential_types, var: controller_credential_types, tags: credential_types}
+          - {role: credential_input_sources, var: controller_credential_input_sources, tags: credential_input_sources}
+          - {role: notification_templates, var: controller_notifications, tags: notification_templates}
+          - {role: applications, var: controller_applications, tags: applications}
+          - {role: inventory_sources, var: controller_inventory_sources, tags: inventory_sources}
+          - {role: inventories, var: controller_inventories, tags: inventories}
+          - {role: hosts, var: controller_hosts, tags: hosts}
+          - {role: groups, var: controller_groups, tags: inventories}
+          - {role: roles, var: controller_roles, tags: roles}
+          - {role: credentials, var: controller_credentials, tags: credentials}
+          - {role: projects, var: controller_projects, tags: projects}
+          - {role: job_templates, var: controller_templates, tags: job_templates}
+          - {role: workflow_job_templates, var: controller_workflows, tags: workflow_job_templates}
+          - {role: schedules, var: controller_schedules, tags: schedules}
+
+  post_tasks:
+    - name: Delete the Authentication Token used
+      ansible.builtin.uri:
+        url: "https://{{ controller_hostname }}{{ controller_oauthtoken_url }}"
+        user: "{{ controller_username }}"
+        password: "{{ controller_password }}"
+        method: DELETE
+        force_basic_auth: true
+        validate_certs: "{{ controller_validate_certs }}"
+        status_code: 204
+      when: controller_oauthtoken_url is defined
+...

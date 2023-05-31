@@ -1,0 +1,7 @@
+# Documentation link : https://github.com/redhat-cop/controller_configuration/blob/devel/roles/settings/README.md
+# USAGE of this resource is reserved only to AAP ADMINISTRATORS !
+---
+# controller_settings:
+#   settings:
+#     AUTH_LDAP_USER_DN_TEMPLATE: "uid=%(user)s,ou=Users,dc=example,dc=com"
+#     AUTH_LDAP_BIND_PASSWORD: "password"

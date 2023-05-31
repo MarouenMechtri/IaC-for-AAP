@@ -1,0 +1,8 @@
+# Documentation link : https://github.com/redhat-cop/controller_configuration/blob/devel/roles/instance_groups/README.md
+# USAGE of this resource is reserved only to AAP ADMINISTRATORS !
+# Check documentation before usage
+---
+controller_instance_groups: []
+#  - name: test_instance_group
+#    instances:
+#      - aapc1.local.mm

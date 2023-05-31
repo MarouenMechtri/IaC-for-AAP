@@ -1,0 +1,9 @@
+# Documentation link : https://github.com/redhat-cop/controller_configuration/blob/devel/roles/inventories/README.md
+# To use this resource copy paste the following code and modify the values :
+---
+controller_inventories:
+  - name: System Inventory - IaC
+    organization: Default - IaC
+    description: created by Ansible Playbook - IaC
+    kind: smart
+    host_filter:  "name__icontains=localhost"
